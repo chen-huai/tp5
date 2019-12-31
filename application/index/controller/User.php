@@ -3,6 +3,7 @@ namespace app\index\controller;
 use app\index\model\User as UserModel;
 class User
 {
+
     //URL访问规则：http://serverName/index.php（或者其它应用入口文件）/模块/控制器/操作/[参数名/
     //新增数据http://www.tp.com/index/user/add
     //首先需要user同名的数据库
