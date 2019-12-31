@@ -1,8 +1,6 @@
 <?php
 namespace app\index\controller;
-//文件路径 thinkphp/labary/think/Request.php
-use think\Request;
-use think\Db;
+
 class Index
 {
     public function index()
@@ -32,9 +30,7 @@ class Index
         //伪静态：将config.php   第84行改为'url_html_suffix'        => 'html|json'
         //www.tp.com/index.json
         dump($request->ext());
-
     }
-
     public function db()
     {
         //数据库
@@ -55,7 +51,6 @@ class Index
         //删除数据
         /*
         $result = Db::execute('delete from think_data where id=1');
-
         */
         //查询数据
         /*
@@ -76,14 +71,14 @@ class Index
         //由于我们在配置文件中设置了数据表的前缀think_,因此table方法可以改为name方法；
         //$result = Db::name('data')->select();
         //链式操作
-       /*
-        $result = Db::name('data')
-            ->field('id,name')//查询字段
-            ->order('id','desc')//降序顺序
-            ->where('status',1)
-            ->limit(10)
-            ->select();
-        */
+        /*
+         $result = Db::name('data')
+             ->field('id,name')//查询字段
+             ->order('id','desc')//降序顺序
+             ->where('status',1)
+             ->limit(10)
+             ->select();
+         */
         //查询第一个数据
         //$result = Db::name('data')->find();
         //模糊查询where(字段名，表达式，查询值)
@@ -103,9 +98,6 @@ class Index
         //字段自动加减数字
         //$result = Db::name('data')->where('id',2)->setInc('status');
         //$result = Db::name('data')->where('id',4)->setDec('status',2);
-
-
         dump($result);
     }
-
 }
