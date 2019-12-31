@@ -9,7 +9,7 @@ class User
     //首先需要user同名的数据库
     //index模块目录,user控制器,add方法
     //model为模型
-
+h
     public function add()
     {
         $user = new UserModel();
