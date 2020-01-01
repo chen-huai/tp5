@@ -11,7 +11,7 @@ class Index extends Controller
     public function index()
     {
 
-        //return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="ad_bd568ce7058a1091"></think>';
+        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="ad_bd568ce7058a1091"></think>';
 
     }
     public function request()
@@ -139,18 +139,23 @@ class Index extends Controller
          //跨模块调用
         //return	$this->fetch('user/user');
         */
-        /*
+
         //传入参数
+        /*
         return	$this->fetch('view',	[
             'name'		=>	'Think',
             'email'	=>	'thinkphp@qq.com'
         ]);
         */
+
         //助手函数
+
         return	view('index',	[
             'name'		=>	'ThinkPHP',
             'email'	=>	'thinkphp@qq.com'
         ]);
+
+
     }
     public function export()
     {
@@ -161,14 +166,27 @@ class Index extends Controller
         //系统变量的输出
         //return $this->fetch();
         /*
-         * //调用非本文件的输出，会出错
+        //调用非本文件的输出，会出错，需要assign
         $this->assign('name','haha');
         return $this->fetch('index');
         */
+
         //变量加密
+
         $this->assign('name','haha');
         $this->assign('time',time());
         return $this->fetch();
+
+        //模板布局调用，一般情况下，不开启；
+        //需要在config配置文件中添加《'layout_on'=>true,'layout_name'=>'layout'》；
+        //需要在view中建立一个layout.html文件，
+        //{include	file="public/header"	/}
+        //	{__CONTENT__}这个即为替换内容，头部和底部一般没有变化
+        //{include	file="public/footer"	/}
+        //只要将调用的文件的格式删除即可开启模板布局
+        //文件开头{__NOLAYOUT__}可以禁止模板布局
+
+        //还有一种直接在文件开头中调用标签{layout name="layout" /}即可，name值可以改为自己的模板布局
 
     }
 
