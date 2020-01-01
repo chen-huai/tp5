@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置标签</title>
+</head>
+<body>
+    <!--
+    循环输出标签
+    添加offset="1"	length='3'输出其中的第1～4条记录
+    -->
+    <h3>循环输出</h3>
+    {volist	name="list"	id="vo" offset="1"	length='3'}
+        {$vo.id}:{$vo.name}<br/>
+    {/volist}
+    <br/><br/>
+    {foreach	$list	as	$vo}
+    {$vo.id}:{$vo.name}<br/>
+    {/foreach}
+    <br/><br/>
+    {for	start="1"	end="10"}
+    {$i}
+    {/for}
+    <h3>输出php代码</h3>
+    {php}
+        echo 'hello world'<br/>;
+    {/php}
+
+</body>
+</html>

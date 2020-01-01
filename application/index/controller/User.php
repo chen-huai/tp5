@@ -1,7 +1,8 @@
 <?php
 namespace app\index\controller;
+use think\Controller;
 use app\index\model\User as UserModel;
-class User
+class User extends Controller
 {
     //URL访问规则：http://serverName/index.php（或者其它应用入口文件）/模块/控制器/操作/[参数名/
     //新增数据http://www.tp.com/index/user/add
@@ -44,7 +45,7 @@ class User
             return '用户新增失败';
         }
     }
-
+    //更新数据
     public function update()
     {
         //先查找后更新http://tp.com/index/user/update
@@ -101,13 +102,14 @@ class User
         */
         //获取多个数据,id为1.2.3的数据
         /*
-        $list=UserModel::all([1,2,3]);
+        $list=UserModel::all([5,7,9]);
         foreach ($list as $key=>$value)
         {
             echo $value->name.'<br />';
             echo $value->email.'<br />';
         }
         */
+
         /*
         //
         $user = new UserModel();
@@ -119,6 +121,7 @@ class User
             echo $value['email'].'<br />';
         }
         */
+
         //聚合函数的调用
         $user = new UserModel();
         echo $user->count('id').'<br />';
@@ -171,5 +174,15 @@ class User
             return '删除失败';
         }
 
+    }
+    //内置标签
+    public function tag()
+    {
+
+        //前置条件，需要extends controller
+        //http://www.tp.com/index/user/tag
+        $list = UserModel::all();
+        $this->assign('list',$list);
+        return $this->fetch();
     }
 }
