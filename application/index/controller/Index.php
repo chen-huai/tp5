@@ -3,12 +3,13 @@ namespace app\index\controller;
 //文件路径 thinkphp/labary/think/Request.php	//文件路径 thinkphp/labary/think/Request.php
 use think\Request;
 use think\Db;
-class Index
+use think\Controller;
+class Index extends Controller
 {
     public function index()
     {
 
-        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="ad_bd568ce7058a1091"></think>';
+        //return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="ad_bd568ce7058a1091"></think>';
 
     }
     public function request()
@@ -91,7 +92,7 @@ class Index
         //查询第一个数据
         //$result = Db::name('data')->find();
         //模糊查询where(字段名，表达式，查询值)
-        $result = Db::name('data')->where('name','like','%明%')->select();
+        $result = Db::name('data')->where('name','like','%明%')->  select();
         //区间查询
         //$result = Db::name('data')->where('id','BETWEEN',[2,4])->select();
         //插入多条数据
@@ -109,4 +110,45 @@ class Index
         //$result = Db::name('data')->where('id',4)->setDec('status',2);
         dump($result);
     }
+    public function view()
+    {
+        //赋值给模板变量
+        //需要在当前模块下有个view视图，同时需要与控制器同名的文件夹,与function一致的文件
+        //http://www.tp.com/index/index/view
+        /*
+       $name = '哈哈';
+       $email = 'haha@qq.com';
+       $this->assign('name',$name);
+       $this->assign('email',$email);
+       */
+        /*
+        //	或者批量赋值
+        $this->assign([
+            'name'		=>	'ThinkPHP',
+            'email'	=>	'thinkphp@qq.com'
+        ]);
+
+        //	模板输出，fetch里面传参数对应跳转到view中的文件
+        //return	$this->fetch('index');
+        //return	$this->fetch('view');
+        //return	$this->fetch('test');
+        //不写默认同function名字的文件
+         return	$this->fetch();
+         //跨模块调用
+        //return	$this->fetch('user/user');
+        */
+        /*
+        //传入参数
+        return	$this->fetch('view',	[
+            'name'		=>	'Think',
+            'email'	=>	'thinkphp@qq.com'
+        ]);
+        */
+        //助手函数
+        return	view('index',	[
+            'name'		=>	'ThinkPHP',
+            'email'	=>	'thinkphp@qq.com'
+        ]);
+    }
+
 }
