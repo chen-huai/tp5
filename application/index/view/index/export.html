@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-{layout name="layout" /}
+<!--模板布局开启标签-->
+{//layout name="layout" /}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>系统变量</title>
 </head>
 <body>
+    <!--模板继承开启标签-->
+    {extend name="base"}
+
 
     {$Think.server.server_name}<br>
     {$Think.APP_PA}<br>
@@ -21,6 +25,16 @@
     Hello,{$name}！<br>
     {/literal}
 
+    <!--模板继承名称一样，可以继承子模板替换基础模板-->
+    {block name="head"}
+
+    <div style="width: 100%;height: 100px;background-color: blue">子模板头部内容</div>
+    {/block}
+    {block name="footer"}
+    <!--该标签，它表示引用所继承模板 对应区块的内容到这个位置，最终这个区块是合并后的内容。-->
+
+    <div style="width: 100%;height: 100px;background-color: pink">子模板底部内容</div>
+    {/block}
 
 </body>
 </html>

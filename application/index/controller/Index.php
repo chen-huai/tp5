@@ -188,6 +188,20 @@ class Index extends Controller
 
         //还有一种直接在文件开头中调用标签{layout name="layout" /}即可，name值可以改为自己的模板布局
 
-    }
 
+        /*模板继承
+        标签{extend name="base"}即可继承基础模板，{__block__}
+        继承后该文件继承之外的内容无法显示
+        */
+
+
+
+    }
+    public function list()
+    {
+        /*包含文件
+        有文件包含会排斥模板布局和模板继承
+        */
+        return $this->fetch();
+    }
 }
