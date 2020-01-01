@@ -4,6 +4,8 @@ namespace app\index\controller;
 use think\Request;
 use think\Db;
 use think\Controller;
+//自定义常量
+define('APP_PA','这个是自定义常量的量');
 class Index extends Controller
 {
     public function index()
@@ -149,6 +151,25 @@ class Index extends Controller
             'name'		=>	'ThinkPHP',
             'email'	=>	'thinkphp@qq.com'
         ]);
+    }
+    public function export()
+    {
+        //变量输出http://www.tp.com/index/index/export
+        /*$name = 'think';
+        $this->assign('name',$name);
+        return	$this->fetch('index');*/
+        //系统变量的输出
+        //return $this->fetch();
+        /*
+         * //调用非本文件的输出，会出错
+        $this->assign('name','haha');
+        return $this->fetch('index');
+        */
+        //变量加密
+        $this->assign('name','haha');
+        $this->assign('time',time());
+        return $this->fetch();
+
     }
 
 }

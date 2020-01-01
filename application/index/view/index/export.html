@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统变量</title>
+</head>
+<body>
+    {$Think.server.server_name}<br>
+    {$Think.APP_PA}<br>
+    <!--调用时，加密-->
+    {$name|md5}<br>
+    <!--调用时，过滤-->
+    {$name|strtoupper|substr=0,3}<br>
+    {$time|date="yy-m-d","###"}<br>
+</body>
+</html>
