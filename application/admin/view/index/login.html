@@ -5,7 +5,8 @@
     <title>用户登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="author" content="DeathGhost"/>
-    <link rel="stylesheet" type="text/css" href="/css/particleStyle.css"/>
+    <link rel="stylesheet" type="text
+    /css" href="/css/particleStyle.css"/>
     <link rel="stylesheet" type="text/css" href="/css/fishing.css"/>
 
     <script src="/js/jquery-1.11.1.min.js"></script>
@@ -64,6 +65,8 @@
     $('.eyes').click(function () {
         /*密码s是否可视*/
         $(this).find('img').fadeToggle();
+
+        //alert($(this).prev('input').attr('type'));
         if ($(this).prev('input').attr('type') == 'text') {
             $(this).prev('input').attr('type', 'password');
         } else {
