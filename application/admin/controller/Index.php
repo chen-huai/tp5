@@ -25,6 +25,8 @@ class Index extends Controller
         $data = input('post.');
         $user = new User();
         $result = $user->where('name', $data['name'])->find();
+        //dump($result['name']);
+        //dump($result['password']);
         if ($result) {
             if ($result['password'] === md5($data['password'])) {
                 session('name', $data['name']);
@@ -32,6 +34,7 @@ class Index extends Controller
                 $this->error('密码错误');
             }
         } else {
+
             $this->error('用户名不存在');
             exit();
         }
