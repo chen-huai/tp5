@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户列表</title>
+    <title>角色列表</title>
 
 
     <!--STYLESHEET-->
@@ -87,6 +87,21 @@
 
     <!--Specify page [ SAMPLE ]-->
     <script src="{$Think.config.web_root}/js/demo/dashboard.js"></script>
+
+
+
+
+        
+    <!--Summernote [ OPTIONAL ]-->
+    <link href="{$Think.config.web_root}/plugins/summernote/summernote.min.css" rel="stylesheet">
+
+    
+    <!--Summernote [ OPTIONAL ]-->
+    <script src="{$Think.config.web_root}/plugins/summernote/summernote.min.js"></script>
+
+
+    <!--Form File Upload [ SAMPLE ]-->
+    <script src="{$Think.config.web_root}/js/demo/form-text-editor.js"></script>
 
 </head>
 
@@ -532,17 +547,7 @@
                 <!--Page Title-->
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <div id="page-title">
-                    <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
-
-                    <!--Searchbox-->
-                    <!-- <div class="searchbox">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
-                            </span>
-                        </div>
-                    </div> -->
+                    
                 </div>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <!--End page title-->
@@ -551,68 +556,53 @@
                 <!--Breadcrumb-->
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Layouts</a></li>
-                    <li class="active">Collapsed Navigation</li>
+                    <li><a href="{:url('Admin/Index/index')}">首页</a></li>
+                    <li><a href="#">系统设置</a></li>
+                    <li class="active">编辑文章</li>
                 </ol>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <!--End breadcrumb-->
-                <div class="panel">
+
                     <!-- <div class="panel-heading">
-                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                        <h3 class="panel-title">Sample Toolbar</h3>
                     </div> -->
                 
-                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--Data Table-->
                     <!--===================================================-->
-                    <div class="panel-body">
-                        <div class="pad-btm form-inline">
-                            <div class="row">
-                                <div class="col-sm-6 text-xs-center">
-                                    <div class="form-group">
-                                        <a href="{:url('Admin/User/add_user')}"><button id="demo-btn-addrow" class="btn btn-purple"><i class="demo-pli-plus"></i> Add New Roles</button></a>
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Article Edit</h3>
+                        </div>
+            
+                        <!--No Label Form-->
+                        <!--===================================================-->
+                        <form class="form-horizontal" method="post" action="{:url('Admin/Article/edi_art')}">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4 mar-btm">
+                                     <input type="text" class="form-control" name="title" placeholder="标题" value="{$data.title}" required="required" maxlength="15">
+                                     <input type="hidden" name="id" value="{$data.id}">
+                                    </div>
+                                    <div class="col-md-4 mar-btm">
+                                        <input type="text" class="form-control"  name="abstract"  placeholder="摘要" value="{$data.abstract}" required="required" maxlength="25">
                                     </div>
                                 </div>
-                                <div class="col-sm-6 text-xs-center text-right">
-                                    <!-- <div class="form-group">
-                                        <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
-                                    </div> -->
-                                </div>
+                                <textarea placeholder="Message" rows="13" class="form-control" name="content" required="required" maxlength="55">{$data.content}</textarea>
                             </div>
-                        </div>
-                        <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
-                            <thead>
-                                <tr>
-                                    <th data-sort-initial="true" data-toggle="true">用户名</th>
-                                    <th>拥有角色</th>
-                                    <th data-hide="phone, tablet">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach name="data" item="v"}
-                                    <tr>
-                                        <td>{$v['username']}</td>
-                                        <td>{$v['title']}</td>
-                                        <td>
-                                            <a href="{:url('Admin/User/edit_user',array('id'=>$v['id']))}">修改权限或密码</a>
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="text-right">
-                                            <ul class="pagination"></ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                            <div class="panel-footer text-left">
+                                <button class="btn btn-default" type="submit">Sbumit</button>
+                            </div>
+                        </form>
+                        <!--===================================================-->
+                        <!--End No Label Form-->
+            
                     </div>
-                    <!--===================================================-->
-                    <!-- End Foo Table - Add & Remove Rows -->
-                
                 </div>
+
+                    <!--===================================================-->
+                    <!--End Data Table-->
+                
             </div>
             <!--===================================================-->
             <!--END CONTENT CONTAINER-->
@@ -662,7 +652,7 @@
                                         <a href="#" class="list-group-item">
                                             <i class="demo-pli-information icon-lg icon-fw"></i> Help
                                         </a>
-                                        <a href="#" class="list-group-item">
+                                        <a href="../Admin/Index/logout" class="list-group-item">
                                             <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
                                         </a>
                                     </div>
@@ -867,11 +857,35 @@
     <!--===================================================-->
     <!-- END OF CONTAINER -->
 
-
-    
-        <!-- SETTINGS - DEMO PURPOSE ONLY -->
-    <!-- END SETTINGS -->
-
+    <script>
+    /*文章提交*/
+    // $('#attrval').click(function () {
+    //     var title = $("input[name='title']").val();
+    //     var abstract = $("input[name='abstract']").val();
+    //     var content = $("textarea[name='content']").val();
+    //     var data = {
+    //         title: title,
+    //         abstract: abstract,
+    //         content: content,
+    //     }; 
+    //     $.ajax({
+    //         url: 'add_arts',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: data,
+    //         success:function(data){
+    //             alert("新增成功");
+    //             // var cc=1；
+    //             // if (cc) {
+    //                 location.href="{:url('Admin/Index/index')}";
+    //             // }
+    //         },
+    //         error:function(){
+    //             alert("222");
+    //         }
+    //     })
+    //     });
+    </script>
 
 </body>
 </html>

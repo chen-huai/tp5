@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2018 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -14,6 +14,8 @@ return [
     // | 应用设置
     // +----------------------------------------------------------------------
 
+    // 应用命名空间
+    'app_namespace'          => 'app',
     // 应用调试模式
     'app_debug'              => true,
     // 应用Trace
@@ -54,7 +56,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'index',
+    'default_module'         => 'home',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
@@ -104,16 +106,6 @@ return [
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
     'var_method'             => '_method',
-    // 表单ajax伪装变量
-    'var_ajax'               => '_ajax',
-    // 表单pjax伪装变量
-    'var_pjax'               => '_pjax',
-    // 是否开启请求缓存 true自动缓存 支持设置请求缓存规则
-    'request_cache'          => false,
-    // 请求缓存有效期
-    'request_cache_expire'   => null,
-    // 全局请求缓存排除规则
-    'request_cache_except'   => [],
 
     // +----------------------------------------------------------------------
     // | 模板设置
@@ -210,6 +202,22 @@ return [
         'auto_start'     => true,
     ],
 
+    // auth配置
+    'auth'    => [
+        // 权限开关
+        'auth_on'           => 1,
+        // 认证方式，1为实时认证；2为登录认证。
+        'auth_type'         => 1,
+        // 用户组数据不带前缀表名
+        'auth_group'        => 'auth_group',
+        // 用户-用户组关系不带前缀表
+        'auth_group_access' => 'auth_group_access',  
+        // 权限规则不带前缀表
+        'auth_rule'         => 'auth_rule',
+        // 用户信息不带前缀表
+        'auth_user'         => 'admin_user',
+    ],
+
     // +----------------------------------------------------------------------
     // | Cookie设置
     // +----------------------------------------------------------------------
@@ -236,4 +244,7 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    /*资源路径*/
+    "web_root"   => "/root/public/static",
 ];
