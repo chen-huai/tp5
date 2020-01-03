@@ -246,5 +246,5 @@ return [
     ],
 
     /*资源路径*/
-    "web_root"   => "/tp5/public/static",
+    "__STATIC__"   => "/tp5/public/static",
 ];
