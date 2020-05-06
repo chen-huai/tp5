@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="../../../static/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../../static/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+<div>
+	<label>所在地点</label>
+	<select name="province_id" id="province_id" style="width:150px;">
+		<option>请选择</option>
+        {volist name="province_list" id="province"}
+        	<option  value="{$province.region_id}">{$province.region_name}</option>
+        {/volist}
+     </select>
+	 <select name="city_id"  id="city_id" style="width:150px;" >
+		 <option>请选择</option>
+
+	  </select>
+	  <select name="district_id"  id="district_id" style="width:150px;" >
+		  <option value="0">请选择</option>
+
+	   </select>  
+</div>
+<script>
+	$("#province_id").change(function(){
+	var province_id=$(this).val();
+	$.ajax({
+		url:'get_citys',
+		Type:"POST",
+		data:"province_id="+province_id,
+		dataType:"json",
+		success:function(data){
+			var city = data.city;
+			var option=$("<option></option>");
+			$(option).val("0");
+			$(option).html("请选择");
+			var option1=$("<option></option>");
+			$(option1).val("0");
+			$(option1).html("请选择");
+			$("#city_id").html(option);
+			$("#district_id").html(option1);
+			for(var i in city){
+				var option=$("<option></option>");
+				$(option).val(city[i]['region_id']);
+				$(option).html(city[i]['region_name']);
+				$("#city_id").append(option);
+			}
+		}
+		
+	});
+});
+</script>
+<script>
+$("#city_id").change(function(){
+	var city_id=$(this).val();
+	$.ajax({
+		url:'get_district',
+		Type:"POST",
+		data:"city_id="+city_id,
+		dataType:"json",
+		success:function(data){
+			var district = data.district;
+			var option=$("<option></option>");
+			$(option).val("0");
+			$(option).html("请选择");
+			$("#district_id").html(option);
+			for(var i in district){
+				var option=$("<option></option>");
+				$(option).val(district[i]['region_id']);
+				$(option).html(district[i]['region_name']);
+				$("#district_id").append(option);
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
